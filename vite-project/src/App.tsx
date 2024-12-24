@@ -3,6 +3,7 @@ import Notes from "./Components/Notes";
 import { Routes, Route } from "react-router-dom";
 import NewNote from "./Components/NewNote";
 import { v5 as uuidv5 } from "uuid";
+import Note from "./Components/Note";
 const App = () => {
   interface Note {
     Title: string;
@@ -20,15 +21,15 @@ const App = () => {
 
   let [NotesList, SetNotesList] = useState<Note[]>([
     {
-      Title: "cos",
-      Body: "cos",
-      Tags: ["cos", "cos", "cos2"],
+      Title: "title",
+      Body: "body",
+      Tags: ["1", "2", "3"],
       id: "1",
     },
     {
       Title: "cos3",
-      Body: "cos3",
-      Tags: ["cos3", "cos3", "cos3"],
+      Body: "body",
+      Tags: ["2", "3", "3"],
       id: "2",
     },
   ]);
@@ -70,6 +71,12 @@ const App = () => {
               SetNotesList={SetNotesList}
               NotesList={NotesList}
             ></NewNote>
+          }
+        ></Route>
+        <Route
+          path="DYNAMICSEND"
+          element={
+            <Note DefaultOptions={DefaultOptions} NotesList={NotesList}></Note>
           }
         ></Route>
       </Routes>

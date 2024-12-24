@@ -105,7 +105,7 @@ const NewNote: React.FC<NewNotesProps> = ({
             isDisabled={isLoading}
             onCreateOption={handleCreate}
             onChange={(tags: MultiValue<OptionsProps>) => {
-              const MainTags = tags.map((tag) => tag.label);
+              const MainTags = tags.map((tag) => tag.id);
               SetNewNote((prevNote) => ({
                 ...prevNote,
                 Tags: MainTags,

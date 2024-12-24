@@ -42,6 +42,15 @@ const Notes: React.FC<NoteListProps> = ({
   setDefaultOptions,
 }) => {
   const [isOpen, SetIsOpen] = useState<Boolean>(false);
+  const [FindTitle, setFindTitle] = useState<string>("");
+  const [FilterTags, setFilterTags] = useState<OptionsProps[]>([]);
+
+  const FiltredNotes = NotesList.filter(
+    (Note) => Note.Title.toLowerCase().includes(FindTitle?.toLowerCase())
+    //filtrowanie po tagach dokonczyc
+    // bardziej konkretne Czyli Note > obiekt > obiekt.tags.filter(i tutaj jako argument.some probly not sure yet )
+  );
+
   return (
     <div>
       {" "}
@@ -59,12 +68,37 @@ const Notes: React.FC<NoteListProps> = ({
           <div className="px-4 py-1 flex gap-4" key={elem.id}>
             <input
               className="w-[90%] bg-transparent placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-slate-300 shadow-lg shadow-gray-100 focus:ring-2 ring-blue-400"
-              value={elem.value}
+              value={elem.label}
               id={elem.id}
-              onChange={(e) => {}}
+              onChange={(e) => {
+                setDefaultOptions((prevOptions) =>
+                  prevOptions.map((option) =>
+                    option.id == elem.id
+                      ? {
+                          ...option,
+                          label: e.target.value,
+                          value: e.target.value,
+                        }
+                      : option
+                  )
+                );
+                localStorage.setItem("Tags", JSON.stringify(DefaultOptions));
+              }}
             ></input>
             <div className="w-[10%]">
-              <CiSquareRemove className="w-full h-full text-4xl duration-200 cursor-pointer fill-red-500 hover:scale-110"></CiSquareRemove>
+              <CiSquareRemove
+                className="w-full h-full text-4xl duration-200 cursor-pointer fill-red-500 hover:scale-110"
+                onClick={() => {
+                  const NewDefaultOptions = DefaultOptions.filter(
+                    (opt) => opt.id !== elem.id
+                  );
+                  setDefaultOptions(NewDefaultOptions);
+                  localStorage.setItem(
+                    "Tags",
+                    JSON.stringify(NewDefaultOptions)
+                  );
+                }}
+              ></CiSquareRemove>
             </div>
           </div>
         ))}
@@ -107,6 +141,9 @@ const Notes: React.FC<NoteListProps> = ({
               type="text"
               placeholder="Type Here..."
               className="w-full bg-transparent placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-slate-300 shadow-lg shadow-gray-100 focus:ring-2 ring-blue-400"
+              onChange={(e) => {
+                setFindTitle(e.target.value);
+              }}
             />
           </div>{" "}
           <div className="flex flex-col flex-1 basis-0">
@@ -115,28 +152,46 @@ const Notes: React.FC<NoteListProps> = ({
               options={DefaultOptions}
               components={{ Menu: CustomMenu }}
               isMulti={true}
+              onChange={(e) => {
+                setFilterTags([...e]);
+                console.log(FilterTags);
+              }}
             />
           </div>
         </div>
 
         <div className="grid grid-cols-4 mt-8 gap-4">
-          {NotesList.map((element) => (
-            <div
-              className="bg-transparent placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-slate-300 shadow-lg shadow-gray-100 focus:ring-2 ring-blue-400 flex items-center justify-center h-[8rem] hover:translate-y-[-0.3rem] hover:shadow-xl cursor-pointer flex-col gap-2"
-              key={element.id}
-            >
-              <h1 className="text-2xl font-normal">{element.Title}</h1>
-              <div className="flex gap-1">
-                {element.Tags.map((elem, index) => (
-                  <div
-                    className="bg-blue-600 px-2 py-1 rounded-lg text-white "
-                    key={index}
-                  >
-                    <p className="font-bold text-xs"> {elem}</p>
-                  </div>
-                ))}
+          {FiltredNotes.map((element) => (
+            <Link to={"DYNAMICSEND"} state={{ note: element }} key={element.id}>
+              <div
+                className="bg-transparent placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-slate-300 shadow-lg shadow-gray-100 focus:ring-2 ring-blue-400 flex items-center justify-center h-[8rem] hover:translate-y-[-0.3rem] hover:shadow-xl cursor-pointer flex-col gap-2"
+                key={element.id}
+              >
+                <h1 className="text-2xl font-normal">{element.Title}</h1>
+                <div className="flex gap-1">
+                  {element.Tags.map((tag, index) => {
+                    const matchedOption = DefaultOptions.find(
+                      (opt) => opt.id == tag
+                    );
+                    if (!matchedOption) return null;
+                    return (
+                      <div
+                        className="bg-blue-600 px-2 py-1 rounded-lg text-white"
+                        key={index}
+                      >
+                        <p className="font-bold text-xs">
+                          {DefaultOptions.map((option) =>
+                            option.id == tag && option.label !== ""
+                              ? option.label
+                              : ""
+                          )}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -145,9 +200,4 @@ const Notes: React.FC<NoteListProps> = ({
 };
 
 export default Notes;
-// setDefaultOptions((prevOptions) =>
-//   prevOptions.map((option) =>
-//     option.id === e.target.id ? { ...option, value: e.target.value } : option
-//   )
-// );
-// dodac do tego localstroage
+//wyszuaknie tablicy zmiana jej stanu i potem dopiero dynamiczne renderowanie
