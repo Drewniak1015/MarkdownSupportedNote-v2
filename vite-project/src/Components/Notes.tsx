@@ -163,10 +163,7 @@ const Notes: React.FC<NoteListProps> = ({
         <div className="grid grid-cols-4 mt-8 gap-4">
           {FiltredNotes.map((element) => (
             <Link to={"DYNAMICSEND"} state={{ note: element }} key={element.id}>
-              <div
-                className="bg-transparent placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-slate-300 shadow-lg shadow-gray-100 focus:ring-2 ring-blue-400 flex items-center justify-center h-[8rem] hover:translate-y-[-0.3rem] hover:shadow-xl cursor-pointer flex-col gap-2"
-                key={element.id}
-              >
+              <div className="bg-transparent placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-slate-300 shadow-lg shadow-gray-100 focus:ring-2 ring-blue-400 flex items-center justify-center h-[8rem] hover:translate-y-[-0.3rem] hover:shadow-xl cursor-pointer flex-col gap-2">
                 <h1 className="text-2xl font-normal">{element.Title}</h1>
                 <div className="flex gap-1">
                   {element.Tags.map((tag, index) => {

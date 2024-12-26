@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import NewNote from "./Components/NewNote";
 import { v5 as uuidv5 } from "uuid";
 import Note from "./Components/Note";
+import EditNote from "./Components/EditNote";
 const App = () => {
   interface Note {
     Title: string;
@@ -19,20 +20,7 @@ const App = () => {
     }
   }, []);
 
-  let [NotesList, SetNotesList] = useState<Note[]>([
-    {
-      Title: "title",
-      Body: "body",
-      Tags: ["1", "2", "3"],
-      id: "1",
-    },
-    {
-      Title: "cos3",
-      Body: "body",
-      Tags: ["2", "3", "3"],
-      id: "2",
-    },
-  ]);
+  let [NotesList, SetNotesList] = useState<Note[]>([]);
 
   interface Tag {
     label: string;
@@ -74,9 +62,24 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="DYNAMICSEND"
+          path="/DYNAMICSEND"
           element={
-            <Note DefaultOptions={DefaultOptions} NotesList={NotesList}></Note>
+            <Note
+              DefaultOptions={DefaultOptions}
+              NotesList={NotesList}
+              SetNotesList={SetNotesList}
+            ></Note>
+          }
+        ></Route>
+        <Route
+          path="/Edit"
+          element={
+            <EditNote
+              DefaultOptions={DefaultOptions}
+              setDefaultOptions={setDefaultOptions}
+              SetNotesList={SetNotesList}
+              NotesList={NotesList}
+            ></EditNote>
           }
         ></Route>
       </Routes>
