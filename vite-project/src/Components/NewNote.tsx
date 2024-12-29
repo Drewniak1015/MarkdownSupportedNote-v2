@@ -18,16 +18,13 @@ interface NewNotesProps {
   DefaultOptions: OptionsProps[];
   setDefaultOptions: React.Dispatch<React.SetStateAction<OptionsProps[]>>;
   SetNotesList: React.Dispatch<React.SetStateAction<NoteProps[]>>;
-  NotesList: NoteProps[];
 }
 
 const NewNote: React.FC<NewNotesProps> = ({
   DefaultOptions,
   setDefaultOptions,
   SetNotesList,
-  NotesList,
 }) => {
-  const [value, setValue] = React.useState<OptionsProps[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [NewNote, SetNewNote] = useState<NoteProps>({
     Title: "",
@@ -53,7 +50,6 @@ const NewNote: React.FC<NewNotesProps> = ({
         localStorage.setItem("Tags", JSON.stringify(NewValue));
         return NewValue;
       });
-      setValue((prev) => [...prev, createOption(newOption.value)]);
     }, 1000);
   };
 

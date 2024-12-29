@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Notes from "./Components/Notes";
 import { Routes, Route } from "react-router-dom";
 import NewNote from "./Components/NewNote";
-import { v5 as uuidv5 } from "uuid";
 import Note from "./Components/Note";
 import EditNote from "./Components/EditNote";
 const App = () => {
@@ -57,7 +56,6 @@ const App = () => {
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
               SetNotesList={SetNotesList}
-              NotesList={NotesList}
             ></NewNote>
           }
         ></Route>
