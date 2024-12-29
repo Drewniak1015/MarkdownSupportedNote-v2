@@ -39,17 +39,22 @@ const EditNote: React.FC<NewNotesProps> = ({
 }) => {
   const location = useLocation();
   const { note } = (location.state as { note: Note }) || {};
-  const [value, setValue] = React.useState<OptionsProps[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [MenuTags, setMenuTags] = useState<tag[]>([]);
-  const [NewNote, SetNewNote] = useState<NoteProps>({
-    Title: note.Title,
-    Body: note.Body,
-    Tags: note.Tags,
-    id: note.id,
-  });
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!note) {
+      navigate("/");
+    }
+  }, [note, navigate]);
+
+  const [NewNote, SetNewNote] = useState<NoteProps>({
+    Title: note?.Title || "",
+    Body: note?.Body || "",
+    Tags: note?.Tags || [],
+    id: note?.id || uuidv4(),
+  });
 
   const createOption = (label: string) => ({
     label,
@@ -67,7 +72,6 @@ const EditNote: React.FC<NewNotesProps> = ({
         localStorage.setItem("Tags", JSON.stringify(NewValue));
         return NewValue;
       });
-      setValue((prev) => [...prev, createOption(newOption.value)]);
     }, 1000);
   };
 
@@ -179,7 +183,3 @@ const EditNote: React.FC<NewNotesProps> = ({
 };
 
 export default EditNote;
-// jesli jest pusty to heade location na /
-
-//puste pola jesli kliknie sie na edit zaraz po usunieciu tagow
-// zrobic powrot do dynamicznego nota i dodac przy okazji funckje na pasku z paramsami

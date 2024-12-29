@@ -74,7 +74,7 @@ const NewNote: React.FC<NewNotesProps> = ({
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
       <h1 className="text-[3rem] font-normal">New Note</h1>
-      <div className="flex gap-4 mt-8">
+      <div className="flex gap-4 mt-8 flex-col sm:flex-row">
         <div className="flex flex-col flex-1 basis-0">
           <label htmlFor="title" className="mb-2 font-normal">
             Title

@@ -38,7 +38,7 @@ const App = () => {
 
   let [DefaultOptions, setDefaultOptions] = useState<Tag[]>([]);
   return (
-    <div className="w-[80vw]  h-[100vh] mx-auto p-8">
+    <div className="w-[100vw] sm:w-[85vw]  h-[100vh] mx-auto p-8">
       <Routes>
         <Route
           path="/"
@@ -88,4 +88,3 @@ const App = () => {
 };
 
 export default App;
-//zrobic style matcuhje do drugiego inputa
