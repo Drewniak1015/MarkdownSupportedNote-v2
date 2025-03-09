@@ -16,7 +16,9 @@ MarkdownSupportedNote-v2 to aplikacja do tworzenia notatek,  Umożliwia tworzeni
 - **System tagów:** Dodawanie tagów do notatek w celu łatwiejszego filtrowania i organizowania.
 - **Opcje filtrowania:** Filtrowanie notatek po tagach oraz wyszukiwanie po nazwie.
 - **Edycja i usuwanie:** Możliwość edytowania oraz usuwania notatek i kategorii.
-
+## Demo
+Demo aplikacji:
+[MarkdownSupportedNote-v2 Demo](https://drewniak1015.github.io/MarkdownSupportedNote-v2/)
 ## Instalacja
 
 Aby zainstalować aplikację, wykonaj poniższe kroki:
