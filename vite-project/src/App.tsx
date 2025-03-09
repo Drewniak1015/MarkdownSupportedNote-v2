@@ -39,7 +39,6 @@ const App = () => {
   return (
     <div className="w-[100vw] sm:w-[85vw]  h-[100vh] mx-auto p-8">
       <Routes>
-        {/* Główna ścieżka */}
         <Route
           path="/"
           element={
@@ -47,43 +46,40 @@ const App = () => {
               NotesList={NotesList}
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
-            />
+            ></Notes>
           }
-        />
-
+        ></Route>
         <Route
-          path="/new"
+          path="/New"
           element={
             <NewNote
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
               SetNotesList={SetNotesList}
-            />
+            ></NewNote>
           }
-        />
-
+        ></Route>
         <Route
-          path="/note/:id"
+          path="/DYNAMICSEND"
           element={
             <Note
               DefaultOptions={DefaultOptions}
               NotesList={NotesList}
               SetNotesList={SetNotesList}
-            />
+            ></Note>
           }
-        />
-
+        ></Route>
         <Route
-          path="/edit/:id"
+          path="/Edit"
           element={
             <EditNote
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
               SetNotesList={SetNotesList}
               NotesList={NotesList}
-            />
+            ></EditNote>
           }
-        />
+        ></Route>
       </Routes>
     </div>
   );
