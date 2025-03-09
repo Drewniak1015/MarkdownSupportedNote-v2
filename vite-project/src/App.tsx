@@ -46,40 +46,40 @@ const App = () => {
               NotesList={NotesList}
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
-            ></Notes>
+            />
           }
-        ></Route>
+        />
         <Route
-          path="New"
+          path="/New"
           element={
             <NewNote
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
               SetNotesList={SetNotesList}
-            ></NewNote>
+            />
           }
-        ></Route>
+        />
         <Route
-          path="DYNAMICSEND"
+          path="/DYNAMICSEND"
           element={
             <Note
               DefaultOptions={DefaultOptions}
               NotesList={NotesList}
               SetNotesList={SetNotesList}
-            ></Note>
+            />
           }
-        ></Route>
+        />
         <Route
-          path="Edit"
+          path="/Edit"
           element={
             <EditNote
               DefaultOptions={DefaultOptions}
               setDefaultOptions={setDefaultOptions}
               SetNotesList={SetNotesList}
               NotesList={NotesList}
-            ></EditNote>
+            />
           }
-        ></Route>
+        />
       </Routes>
     </div>
   );

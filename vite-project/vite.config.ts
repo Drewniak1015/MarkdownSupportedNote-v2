@@ -1,7 +1,6 @@
-import { defineConfig } from "vite";
-
-// https://vite.dev/config/
-
-export default defineConfig({
+export default {
   base: "/MarkdownSupportedNote-v2/",
-});
+  build: {
+    outDir: "dist",
+  },
+};
