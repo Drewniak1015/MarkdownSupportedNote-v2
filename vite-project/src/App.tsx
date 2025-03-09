@@ -50,7 +50,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/New"
+          path="New"
           element={
             <NewNote
               DefaultOptions={DefaultOptions}
@@ -60,7 +60,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/DYNAMICSEND"
+          path="DYNAMICSEND"
           element={
             <Note
               DefaultOptions={DefaultOptions}
@@ -70,7 +70,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/Edit"
+          path="Edit"
           element={
             <EditNote
               DefaultOptions={DefaultOptions}

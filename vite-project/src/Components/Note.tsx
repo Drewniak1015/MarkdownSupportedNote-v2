@@ -43,7 +43,7 @@ const Note: React.FC<NoteListProps> = ({
       <div className="flex justify-between flex-col mb-6 gap-6">
         <h1 className="text-4xl font-bold">{note.Title}</h1>
         <div className="flex items-center flex-wrap">
-          <Link to="/Edit" state={{ note: note }} key={note.id}>
+          <Link to="Edit" state={{ note: note }} key={note.id}>
             <button className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 duration-300">
               {" "}
               Edit
