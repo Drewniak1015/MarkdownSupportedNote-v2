@@ -70,7 +70,7 @@ const App = () => {
           }
         />
         <Route
-          path="/Edit"
+          path="/DYNAMICSEND/Edit"
           element={
             <EditNote
               DefaultOptions={DefaultOptions}
